@@ -39,11 +39,11 @@ for ele in NZAT :
     if(hasArrived(startTime,ele[1])) :
         GC.append((ele[0],startTime,startTime+ele[2]))
         startTime = startTime + ele[2]
-    #else :
+    #else : incomplete
 
 #calculation of waiting and turnaround times in order of GC        
 zip_lists = zip(GC,P)
-newP = [x for _, x in sorted(zip_lists)] #original P array remains the same, newP is P sorted in order of GC
+newP = [x for _, x in sorted(zip_lists)] #original P array remains the same, newP is P sorted in order of GC #this line is the glitchy sort part
 zip_lists = zip(GC,newP)
 print(P)
 print(GC)
