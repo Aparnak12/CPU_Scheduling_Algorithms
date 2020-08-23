@@ -26,7 +26,10 @@ for process in P :
     else :
         NZAT.append(process)
 ZAT.sort(key = operator.itemgetter(2)) #sorting zero AT processes by their BT
-NZAT.sort(key = operator.itemgetter(2,1)) #sorting non-zero AT by BT and AT respectively
+NZAT.sort(key = operator.itemgetter(1)) #sorting non-zero AT by thier AT respectively
+
+print("ZAT ",ZAT)
+print("NZAT ",NZAT)
 
 #calculation of gantt chart
 GC = []
@@ -45,9 +48,9 @@ for ele in NZAT :
 zip_lists = zip(GC,P)
 newP = [x for _, x in sorted(zip_lists)] #original P array remains the same, newP is P sorted in order of GC #this line is the glitchy sort part
 zip_lists = zip(GC,newP)
-print(P)
-print(GC)
-print(newP)
+print("processes ", P)
+print("Gant Chart ",GC)
+print("New Process ",newP)
 WT = []
 TT = []
 for (i,j) in zip_lists :
