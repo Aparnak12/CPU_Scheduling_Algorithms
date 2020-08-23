@@ -10,7 +10,7 @@ def hasArrived(currentTime,arrivalTime) :
 #start here    
 #input
 n = int(input("Enter no. of processes : "))
-P = [] #list of tuples
+P = [] #list of tupless
 for i in range(0,n) :
     print("\nP"+str(i+1)+" :")
     AT = int(input("Arrival time : "))
@@ -26,8 +26,8 @@ for process in P :
     else :
         NZAT.append(process)
 ZAT.sort(key = operator.itemgetter(2)) #sorting zero AT processes by their BT
-NZAT.sort(key = operator.itemgetter(1)) #sorting non-zero AT by thier AT respectively
-
+NZAT.sort(key = operator.itemgetter(2,1)) #sorting non-zero AT by thier AT respectively
+newP = ZAT + NZAT #creating the newP list by appending ZAT and NZAT since the processes are sorted according to Ghant Chart
 print("ZAT ",ZAT)
 print("NZAT ",NZAT)
 
@@ -36,7 +36,7 @@ GC = []
 startTime = 0
 for ele in ZAT :
     GC.append((ele[0],startTime,startTime+ele[2]))
-    startTime = startTime + ele[2] #updating start time of new process to end time of old process
+    startTime = startTime + ele[2] #updating start time of new process to end time of old process in the GC
     
 for ele in NZAT :
     if(hasArrived(startTime,ele[1])) :
@@ -46,7 +46,7 @@ for ele in NZAT :
 
 #calculation of waiting and turnaround times in order of GC        
 zip_lists = zip(GC,P)
-newP = [x for _, x in sorted(zip_lists)] #original P array remains the same, newP is P sorted in order of GC #this line is the glitchy sort part
+#newP = [x for _, x in sorted(zip_lists)] #original P array remains the same, newP is P sorted in order of GC #this line is the glitchy sort part
 zip_lists = zip(GC,newP)
 print("processes ", P)
 print("Gant Chart ",GC)
